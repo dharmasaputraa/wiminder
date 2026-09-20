@@ -25,7 +25,7 @@ func NewSMTP(cfg SMTPConfig) *SMTP { return &SMTP{cfg: cfg} }
 func (s *SMTP) Name() string { return "email" }
 
 func (s *SMTP) build(msg Message) []byte {
-	boundary := "wimember-boundary-42"
+	boundary := "wiminder-boundary-42"
 	var b strings.Builder
 	fmt.Fprintf(&b, "From: %s\r\n", s.cfg.From)
 	fmt.Fprintf(&b, "To: %s\r\n", strings.Join(s.cfg.To, ", "))
@@ -62,5 +62,5 @@ func (s *SMTP) Send(ctx context.Context, msg Message) error {
 }
 
 func (s *SMTP) Test(ctx context.Context) error {
-	return s.Send(ctx, Message{Title: "wimember tes", Body: "Koneksi email OK ✅"})
+	return s.Send(ctx, Message{Title: "wiminder tes", Body: "Koneksi email OK ✅"})
 }

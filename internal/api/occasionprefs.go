@@ -3,8 +3,8 @@ package api
 import (
 	"github.com/gin-gonic/gin"
 
-	"wimember/internal/domain"
-	"wimember/internal/store"
+	"wiminder/internal/domain"
+	"wiminder/internal/store"
 )
 
 // Per-occasion reminder prefs: the same shape as the contact-level prefs, plus

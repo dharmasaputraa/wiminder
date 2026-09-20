@@ -1,4 +1,4 @@
-const devEmailKey = 'wimember-dev-email'
+const devEmailKey = 'wiminder-dev-email'
 
 export function devEmail(): string | null { return localStorage.getItem(devEmailKey) }
 

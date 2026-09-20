@@ -9,8 +9,8 @@ import (
 	"testing"
 	"time"
 
-	"wimember/internal/domain"
-	"wimember/internal/store"
+	"wiminder/internal/domain"
+	"wiminder/internal/store"
 )
 
 const hariliburFixture = `[{"holiday_date":"2026-12-25","holiday_name":"Hari Raya Natal","is_national_holiday":true},

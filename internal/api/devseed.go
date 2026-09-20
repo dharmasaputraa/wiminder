@@ -7,9 +7,9 @@ import (
 	"fmt"
 	"log/slog"
 
-	"wimember/internal/config"
-	"wimember/internal/secret"
-	"wimember/internal/store"
+	"wiminder/internal/config"
+	"wiminder/internal/secret"
+	"wiminder/internal/store"
 )
 
 // SeedDevTelegram is a dev-only env seeder: with AUTH_MODE=dev and

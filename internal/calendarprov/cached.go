@@ -6,8 +6,8 @@ import (
 	"sync"
 	"time"
 
-	"wimember/internal/domain"
-	"wimember/internal/store"
+	"wiminder/internal/domain"
+	"wiminder/internal/store"
 )
 
 type cachePayload struct {

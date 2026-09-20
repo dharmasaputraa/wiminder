@@ -4,7 +4,7 @@ import (
 	"context"
 	"testing"
 
-	"wimember/internal/domain"
+	"wiminder/internal/domain"
 )
 
 func TestComputedPawukon(t *testing.T) {

@@ -68,12 +68,12 @@ function startGotifyStub(): Promise<{ server: Server; url: string; messages: () 
 
 async function startApp(): Promise<{ app: App; stop: () => Promise<void> }> {
   const workerIndex = process.env.TEST_PARALLEL_INDEX ?? '0'
-  const dataDir = await mkdtemp(path.join(os.tmpdir(), `wimember-e2e-${process.pid}-${workerIndex}-`))
+  const dataDir = await mkdtemp(path.join(os.tmpdir(), `wiminder-e2e-${process.pid}-${workerIndex}-`))
   const dbPath = path.join(dataDir, 'wimember.db')
   const logPath = path.join(dataDir, 'server.log')
   const port = await freePort()
   const baseUrl = `http://127.0.0.1:${port}`
-  const bin = fileURLToPath(new URL('../../bin/wimember', import.meta.url)) // ESM-safe: no __dirname under type:module
+  const bin = fileURLToPath(new URL('../../bin/wiminder', import.meta.url)) // ESM-safe: no __dirname under type:module
 
   const logStream = createWriteStream(logPath)
   const child = spawn(bin, [], {
@@ -224,7 +224,7 @@ export const test = base.extend<{ app: App; session: Session }, { app: App }>({
         extraHTTPHeaders: { 'X-Dev-Email': email },
       })
       await ctx.addInitScript(
-        (email: string) => localStorage.setItem('wimember-dev-email', email),
+        (email: string) => localStorage.setItem('wiminder-dev-email', email),
         email,
       )
       cache.set(key, ctx)

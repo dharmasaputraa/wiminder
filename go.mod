@@ -1,4 +1,4 @@
-module wimember
+module wiminder
 
 go 1.26.0
 

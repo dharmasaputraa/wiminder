@@ -11,8 +11,8 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/golang-jwt/jwt/v5"
 
-	"wimember/internal/config"
-	"wimember/internal/store"
+	"wiminder/internal/config"
+	"wiminder/internal/store"
 )
 
 type UserProvisioner interface {

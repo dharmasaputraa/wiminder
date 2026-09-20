@@ -2,7 +2,7 @@ name: Pages
 
 on:
   push:
-    branches: [feature/reui-refactor]
+    branches: [main, feature/reui-refactor]
     paths: ['site/**', '.github/workflows/pages.yml']
   pull_request:
     paths: ['site/**', '.github/workflows/pages.yml']

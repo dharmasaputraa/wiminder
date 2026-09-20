@@ -1,4 +1,12 @@
-export function ScreenshotFrame({ label }: { label: string }) {
+export function ScreenshotFrame({
+  src,
+  label,
+  loading = "lazy",
+}: {
+  src: string;
+  label: string;
+  loading?: "eager" | "lazy";
+}) {
   return (
     <div className="rounded-xl bg-carbon p-6 shadow-card-inset">
       <div className="flex items-center gap-1.5 pb-4">
@@ -6,9 +14,13 @@ export function ScreenshotFrame({ label }: { label: string }) {
         <span className="size-2.5 rounded-full bg-graphite" />
         <span className="size-2.5 rounded-full bg-graphite" />
       </div>
-      <div className="flex min-h-[280px] items-center justify-center rounded-md bg-obsidian px-6 py-16">
-        <p className="text-caption text-fog">{label}</p>
-      </div>
+      <img
+        src={src}
+        alt={label}
+        loading={loading}
+        decoding="async"
+        className="w-full rounded-md outline-1 outline-white/10 -outline-offset-1"
+      />
     </div>
   );
 }

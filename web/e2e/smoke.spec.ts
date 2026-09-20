@@ -36,7 +36,7 @@ test('app runs against a temp database under os.tmpdir()', async ({ app }) => {
   const tmpDir = await realpath(os.tmpdir())
   const realDataDir = await realpath(dataDir)
   expect(realDataDir.startsWith(tmpDir + path.sep), `${realDataDir} is under ${tmpDir}`).toBe(true)
-  expect(path.basename(dataDir)).toMatch(/^wimember-e2e-/)
+  expect(path.basename(dataDir)).toMatch(/^wiminder-e2e-/)
   const s = await stat(app.dbPath)
   expect(s.size).toBeGreaterThan(0)
   expect(rows(app.db, 'SELECT 1 AS one')[0].one).toBe(1)

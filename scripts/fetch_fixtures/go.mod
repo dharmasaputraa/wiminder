@@ -1,4 +1,4 @@
-module wimember/scripts/fetchfixtures
+module wiminder/scripts/fetchfixtures
 
 go 1.27.1
 

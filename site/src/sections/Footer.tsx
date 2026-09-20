@@ -1,4 +1,4 @@
-const REPO = "https://github.com/dharmasaputraa/reminder-app";
+const REPO = "https://github.com/dharmasaputraa/wiminder";
 
 export function Footer() {
   return (
@@ -8,7 +8,7 @@ export function Footer() {
           Built for the Balinese community.{" "}
           <a
             href={REPO}
-            className="text-fog underline decoration-graphite underline-offset-4 hover:text-mist"
+            className="text-fog underline decoration-graphite underline-offset-4 transition-colors duration-150 hover:text-mist"
           >
             View source on GitHub
           </a>
@@ -17,7 +17,7 @@ export function Footer() {
           Pawukon fixtures ©{" "}
           <a
             href="https://kalenderbali.org"
-            className="text-fog underline decoration-graphite underline-offset-4 hover:text-mist"
+            className="text-fog underline decoration-graphite underline-offset-4 transition-colors duration-150 hover:text-mist"
           >
             kalenderbali.org
           </a>{" "}

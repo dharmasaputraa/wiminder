@@ -8,7 +8,7 @@ import (
 	"net/http"
 	"time"
 
-	"wimember/internal/domain"
+	"wiminder/internal/domain"
 )
 
 // Kresna: Indonesian holidays from github.com/kresnasatya/api-harilibur — one

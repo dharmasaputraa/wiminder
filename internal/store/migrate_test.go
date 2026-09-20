@@ -4,7 +4,7 @@ import (
 	"context"
 	"testing"
 
-	"wimember/internal/domain"
+	"wiminder/internal/domain"
 )
 
 // Regression: the occasion type vocabulary must not break on schema edits.

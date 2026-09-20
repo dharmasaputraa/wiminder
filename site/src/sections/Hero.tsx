@@ -1,8 +1,9 @@
 import { motion } from "motion/react";
 import { Button } from "../components/Button";
 import { ScreenshotFrame } from "../components/ScreenshotFrame";
+import calendarShot from "../assets/shots/calendar.png";
 
-const REPO = "https://github.com/dharmasaputraa/reminder-app";
+const REPO = "https://github.com/dharmasaputraa/wiminder";
 
 export function Hero() {
   return (
@@ -17,13 +18,13 @@ export function Hero() {
           self-hosted · docker · single binary
         </p>
         <h1 className="text-[40px] font-[510] leading-none tracking-[-0.022em] text-paper md:text-[64px]">
-          Self-hosted reminders for Balinese otonan, birthdays &amp;
-          anniversaries
+          Never miss an otonan again
         </h1>
         <p className="mt-6 max-w-[560px] text-[16px] leading-[1.5] text-fog">
-          The 210-day pawukon cycle computed automatically from each birth
-          date, delivered via Gotify, Telegram, or email — everything in one
-          container on your own server.
+          Self-hosted reminders for Balinese otonan, birthdays, and
+          anniversaries. wiminder watches the 210-day pawukon cycle for every
+          birth date you add and delivers each one via Gotify, Telegram, or
+          email — one container, your server.
         </p>
         <div className="mt-8 flex flex-wrap items-center gap-3">
           <Button variant="primary" href="#deploy">
@@ -44,7 +45,11 @@ export function Hero() {
           aria-hidden
           className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-[linear-gradient(180deg,rgba(8,9,10,0)_10%,rgba(208,214,224,0.13)_100%)]"
         />
-        <ScreenshotFrame label="wimember calendar — screenshot coming soon" />
+        <ScreenshotFrame
+          src={calendarShot}
+          label="wiminder calendar — otonan and events at a glance"
+          loading="eager"
+        />
       </motion.div>
     </section>
   );

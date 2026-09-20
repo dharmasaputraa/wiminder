@@ -6,9 +6,9 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"wimember/internal/domain"
-	"wimember/internal/notify"
-	"wimember/internal/store"
+	"wiminder/internal/domain"
+	"wiminder/internal/notify"
+	"wiminder/internal/store"
 )
 
 type upcomingNotifyIn struct {

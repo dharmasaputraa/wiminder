@@ -3,8 +3,8 @@ package notify
 import (
 	"testing"
 
-	"wimember/internal/secret"
-	"wimember/internal/store"
+	"wiminder/internal/secret"
+	"wiminder/internal/store"
 )
 
 func TestNewFromChannel(t *testing.T) {

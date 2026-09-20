@@ -25,7 +25,7 @@ COPY cmd/ cmd/
 COPY internal/ internal/
 RUN rm -rf internal/api/webroot
 COPY --from=web /src/web/dist internal/api/webroot
-RUN CGO_ENABLED=0 go build -trimpath -ldflags="-s -w" -o /out/wimember ./cmd/server
+RUN CGO_ENABLED=0 go build -trimpath -ldflags="-s -w" -o /out/wiminder ./cmd/server
 
 # ---- 3: image final ----
 # Runs as root at boot only for the entrypoint's data-dir chown; the server
@@ -33,7 +33,7 @@ RUN CGO_ENABLED=0 go build -trimpath -ldflags="-s -w" -o /out/wimember ./cmd/ser
 FROM alpine:3.20
 RUN apk add --no-cache ca-certificates tzdata wget su-exec \
     && addgroup -g 1000 app && adduser -D -u 1000 -G app app
-COPY --from=build /out/wimember /usr/local/bin/wimember
+COPY --from=build /out/wiminder /usr/local/bin/wiminder
 COPY --chmod=0755 deploy/docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
 ENV ADDR=:8080 DATA_DIR=/data
 VOLUME /data
@@ -41,4 +41,4 @@ EXPOSE 8080
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s \
   CMD wget -qO- http://127.0.0.1:8080/healthz || exit 1
 ENTRYPOINT ["docker-entrypoint.sh"]
-CMD ["wimember"]
+CMD ["wiminder"]

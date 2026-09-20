@@ -47,7 +47,7 @@ func startFakeSMTP(t *testing.T) *fakeSMTP {
 					w.WriteString(s + "\r\n")
 					w.Flush()
 				}
-				write("220 wimember-test ESMTP")
+				write("220 wiminder-test ESMTP")
 				inData := false
 				for {
 					line, err := r.ReadString('\n')
@@ -65,7 +65,7 @@ func startFakeSMTP(t *testing.T) *fakeSMTP {
 						}
 					case strings.HasPrefix(strings.ToUpper(trimmed), "EHLO"),
 						strings.HasPrefix(strings.ToUpper(trimmed), "HELO"):
-						write("250 wimember-test")
+						write("250 wiminder-test")
 					case strings.HasPrefix(strings.ToUpper(trimmed), "MAIL FROM:"):
 						f.mailFrom = trimmed
 						write("250 OK")
@@ -123,7 +123,7 @@ func startSilentSMTP(t *testing.T) int {
 func TestSMTPSend(t *testing.T) {
 	f := startFakeSMTP(t)
 	port, _ := strconv.Atoi(strings.Split(f.addr, ":")[1])
-	s := NewSMTP(SMTPConfig{Host: "127.0.0.1", Port: port, From: "wimember@x.id",
+	s := NewSMTP(SMTPConfig{Host: "127.0.0.1", Port: port, From: "wiminder@x.id",
 		To: []string{"budi@x.id"}}) // no auth — the fake accepts anything
 	if err := s.Send(context.Background(), Message{Title: "🎂 birthday", Body: "message body"}); err != nil {
 		t.Fatal(err)

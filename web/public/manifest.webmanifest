@@ -1,6 +1,6 @@
 {
-  "name": "wimember — remember",
-  "short_name": "wimember",
+  "name": "wiminder — remember",
+  "short_name": "wiminder",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#f8fafc",

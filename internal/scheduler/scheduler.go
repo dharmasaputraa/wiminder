@@ -14,10 +14,10 @@ import (
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promauto"
 
-	"wimember/internal/calendarprov"
-	"wimember/internal/domain"
-	"wimember/internal/notify"
-	"wimember/internal/store"
+	"wiminder/internal/calendarprov"
+	"wiminder/internal/domain"
+	"wiminder/internal/notify"
+	"wiminder/internal/store"
 )
 
 type Clock interface{ Now() time.Time }
@@ -55,7 +55,7 @@ type Result struct{ Sent, Failed, Missed int }
 const failBackoff = 15 * time.Minute
 
 var notifCounter = promauto.NewCounterVec(prometheus.CounterOpts{
-	Name: "wimember_notifications_total",
+	Name: "wiminder_notifications_total",
 	Help: "notifications by status and kind",
 }, []string{"status", "kind"})
 

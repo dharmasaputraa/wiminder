@@ -38,7 +38,7 @@ func TestSPAWithBuiltWebroot(t *testing.T) {
 	withSpaFS(t, fstest.MapFS{
 		"webroot/index.html":           &fstest.MapFile{Data: []byte(`<div id="root"></div>`)},
 		"webroot/assets/app.js":        &fstest.MapFile{Data: []byte("console.log(1)")},
-		"webroot/manifest.webmanifest": &fstest.MapFile{Data: []byte(`{"name":"wimember"}`)},
+		"webroot/manifest.webmanifest": &fstest.MapFile{Data: []byte(`{"name":"wiminder"}`)},
 		"webroot/sw.js":                &fstest.MapFile{Data: []byte("self.addEventListener")},
 	})
 	s, _ := newTestServer(t, "admin@x.id")
@@ -49,7 +49,7 @@ func TestSPAWithBuiltWebroot(t *testing.T) {
 		{"/", `<div id="root">`, "text/html", 200},
 		{"/contacts/1", `<div id="root">`, "text/html", 200}, // SPA fallback
 		{"/assets/app.js", "console.log(1)", "text/javascript", 200},
-		{"/manifest.webmanifest", `"name":"wimember"`, "application/manifest+json", 200},
+		{"/manifest.webmanifest", `"name":"wiminder"`, "application/manifest+json", 200},
 		{"/sw.js", "addEventListener", "text/javascript", 200},
 		{"/../go.mod", `<div id="root">`, "text/html", 200}, // traversal outside webroot → fallback
 	}

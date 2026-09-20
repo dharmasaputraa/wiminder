@@ -6,8 +6,8 @@ root = "."
 tmp_dir = "tmp"
 
 [build]
-  bin = "./tmp/wimember-dev"
-  cmd = "go build -o ./tmp/wimember-dev ./cmd/server"
+  bin = "./tmp/wiminder-dev"
+  cmd = "go build -o ./tmp/wiminder-dev ./cmd/server"
   delay = 1000
   # Only .go file changes trigger a rebuild; _test.go is ignored so a running
   # `go test` does not trigger repeated builds.

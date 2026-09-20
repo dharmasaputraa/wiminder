@@ -3,7 +3,7 @@ package notify
 import (
 	"fmt"
 
-	"wimember/internal/domain"
+	"wiminder/internal/domain"
 )
 
 var bulanIndo = [12]string{"January", "February", "March", "April", "May", "June",

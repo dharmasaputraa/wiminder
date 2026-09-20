@@ -10,10 +10,10 @@ import (
 
 	"github.com/google/uuid"
 
-	"wimember/internal/calendarprov"
-	"wimember/internal/domain"
-	"wimember/internal/notify"
-	"wimember/internal/store"
+	"wiminder/internal/calendarprov"
+	"wiminder/internal/domain"
+	"wiminder/internal/notify"
+	"wiminder/internal/store"
 )
 
 type stubNotifier struct {

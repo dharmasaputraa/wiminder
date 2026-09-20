@@ -11,13 +11,13 @@ import (
 	"time"
 	_ "time/tzdata" // bare-metal without zoneinfo: LoadLocation still works (Docker already ships tzdata)
 
-	"wimember/internal/api"
-	"wimember/internal/calendarprov"
-	"wimember/internal/config"
-	"wimember/internal/notify"
-	"wimember/internal/scheduler"
-	"wimember/internal/secret"
-	"wimember/internal/store"
+	"wiminder/internal/api"
+	"wiminder/internal/calendarprov"
+	"wiminder/internal/config"
+	"wiminder/internal/notify"
+	"wiminder/internal/scheduler"
+	"wiminder/internal/secret"
+	"wiminder/internal/store"
 )
 
 func main() {
@@ -90,7 +90,7 @@ func main() {
 
 	httpServer := &http.Server{Addr: cfg.Addr, Handler: srv, ReadHeaderTimeout: 5 * time.Second}
 	go func() {
-		slog.Info("wimember running", "addr", cfg.Addr, "auth", cfg.AuthMode)
+		slog.Info("wiminder running", "addr", cfg.Addr, "auth", cfg.AuthMode)
 		if err := httpServer.ListenAndServe(); err != nil && !errors.Is(err, http.ErrServerClosed) {
 			slog.Error("http server", "err", err)
 			os.Exit(1)

@@ -8,10 +8,10 @@ import (
 	"testing"
 	"time"
 
-	"wimember/internal/calendarprov"
-	"wimember/internal/config"
-	"wimember/internal/domain"
-	"wimember/internal/store"
+	"wiminder/internal/calendarprov"
+	"wiminder/internal/config"
+	"wiminder/internal/domain"
+	"wiminder/internal/store"
 )
 
 // stubProv: deterministic holiday provider for /upcoming tests.

@@ -66,5 +66,5 @@ func (g *Gotify) Send(ctx context.Context, msg Message) error {
 }
 
 func (g *Gotify) Test(ctx context.Context) error {
-	return g.Send(ctx, Message{Title: "wimember tes", Body: "Koneksi Gotify OK ✅", Priority: 5})
+	return g.Send(ctx, Message{Title: "wiminder tes", Body: "Koneksi Gotify OK ✅", Priority: 5})
 }

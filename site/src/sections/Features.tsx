@@ -1,3 +1,4 @@
+import { motion } from "motion/react";
 import {
   Bell,
   CalendarSync,
@@ -7,6 +8,7 @@ import {
   Smartphone,
 } from "lucide-react";
 import { Section } from "../components/Section";
+import { reveal } from "../lib/reveal";
 
 const FEATURES = [
   {
@@ -21,7 +23,7 @@ const FEATURES = [
   },
   {
     icon: History,
-    title: "Never miss one",
+    title: "Never miss a reminder",
     body: "Reminders missed while the container was down are caught up and labeled late; deduplication guarantees once per event, date, and offset.",
   },
   {
@@ -44,26 +46,32 @@ const FEATURES = [
 export function Features() {
   return (
     <Section id="features">
-      <h2 className="text-[32px] font-[510] leading-[1.13] tracking-[-0.022em] text-paper md:text-[48px] md:leading-none">
-        Quietly keeps track
-      </h2>
-      <p className="mt-4 max-w-[560px] text-[16px] leading-[1.5] text-fog">
-        Everything wimember does, it does on your own infrastructure.
-      </p>
+      <motion.div {...reveal()}>
+        <h2 className="text-[32px] font-[510] leading-[1.13] tracking-[-0.022em] text-paper md:text-[48px] md:leading-none">
+          Quietly keeps track
+        </h2>
+        <p className="mt-4 max-w-[560px] text-[16px] leading-[1.5] text-fog">
+          Everything wiminder does, it does on your own infrastructure.
+        </p>
+      </motion.div>
       <div className="mt-12 grid grid-cols-1 gap-4 md:grid-cols-2">
-        {FEATURES.map(({ icon: Icon, title, body }) => (
-          <article
+        {FEATURES.map(({ icon: Icon, title, body }, i) => (
+          <motion.article
             key={title}
-            className="rounded-xl bg-[rgba(255,255,255,0.02)] p-6 shadow-card-inset"
+            {...reveal(0.1 + i * 0.08)}
+            className="group rounded-xl bg-[rgba(255,255,255,0.02)] p-6 shadow-card-inset transition-colors duration-150 hover:bg-[rgba(255,255,255,0.04)]"
           >
-            <Icon className="size-4 text-fog" aria-hidden />
+            <Icon
+              className="size-4 text-fog transition-colors duration-150 group-hover:text-mist"
+              aria-hidden
+            />
             <h3 className="mt-4 text-[20px] font-[510] leading-[1.33] tracking-[-0.012em] text-mist">
               {title}
             </h3>
             <p className="mt-2 text-[15px] leading-[1.6] tracking-[-0.011em] text-fog">
               {body}
             </p>
-          </article>
+          </motion.article>
         ))}
       </div>
     </Section>

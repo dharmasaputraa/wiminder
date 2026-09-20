@@ -8,9 +8,9 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"wimember/internal/calendarprov"
-	"wimember/internal/domain"
-	"wimember/internal/store"
+	"wiminder/internal/calendarprov"
+	"wiminder/internal/domain"
+	"wiminder/internal/store"
 )
 
 type UpcomingItem struct {

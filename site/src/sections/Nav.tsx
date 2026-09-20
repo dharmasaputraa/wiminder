@@ -1,6 +1,7 @@
 import { Button } from "../components/Button";
+import logoMark from "../assets/logo-mark.svg";
 
-const REPO = "https://github.com/dharmasaputraa/reminder-app";
+const REPO = "https://github.com/dharmasaputraa/wiminder";
 
 // GitHub mark (octicons `mark-github`, MIT). Inlined because lucide-react v1
 // dropped all brand icons — `import { Github } from "lucide-react"` no longer
@@ -17,14 +18,21 @@ export function Nav() {
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-graphite bg-void/80 backdrop-blur">
       <nav className="mx-auto flex h-14 w-full max-w-[1200px] items-center justify-between px-6">
-        <a href="#top" className="text-[16px] font-[510] text-paper">
-          wimember
+        <a href="#top" className="flex items-center gap-2 text-[16px] font-[510] text-paper">
+          <img src={logoMark} alt="" aria-hidden className="h-5 w-auto" />
+          wiminder
         </a>
         <div className="flex items-center gap-2">
-          <Button href="#features" className="border-0 px-3 py-2 hover:text-bone">
+          <Button
+            href="#features"
+            className="border-0 px-3 py-2 hover:text-bone hover:underline hover:decoration-smoke hover:underline-offset-[6px]"
+          >
             Features
           </Button>
-          <Button href="#deploy" className="border-0 px-3 py-2 hover:text-bone">
+          <Button
+            href="#deploy"
+            className="border-0 px-3 py-2 hover:text-bone hover:underline hover:decoration-smoke hover:underline-offset-[6px]"
+          >
             Deploy
           </Button>
           <Button variant="white-pill" href={REPO}>

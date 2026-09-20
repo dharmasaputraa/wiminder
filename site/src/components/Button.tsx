@@ -21,7 +21,7 @@ export function Button({
   return (
     <a
       className={cx(
-        "inline-flex items-center gap-2 transition-opacity duration-150",
+        "inline-flex items-center gap-2 transition-[color,border-color,opacity,transform] duration-150 ease-out active:scale-[0.96]",
         styles[variant],
         className,
       )}

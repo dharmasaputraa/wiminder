@@ -11,14 +11,14 @@ GitHub Actions (release.yml)
   go test → buildx multi-arch (amd64+arm64)
         │
         ▼
-ghcr.io/dharmasaputraa/reminder-app
+ghcr.io/dharmasaputraa/wiminder
   tags: 1.2.3 · 1.2 · 1 · latest · sha-xxxxxxx
         │  (API call: POST /api/application.deploy, pinned to sha-xxxxxxx)
         ▼
 Dokploy (pull the pinned tag → new container → healthz → routing)
 ```
 
-Published images can be viewed at: `github.com/dharmasaputraa/reminder-app/pkgs/container/reminder-app`.
+Published images can be viewed at: `github.com/dharmasaputraa/wiminder/pkgs/container/wiminder`.
 
 ---
 
@@ -45,7 +45,7 @@ Dokploy needs a token to **pull** images from GHCR.
 
 1. Project → **Create Service** → **Application**.
 2. **General** tab → Source Type: **Docker**.
-3. **Docker Image**: `ghcr.io/dharmasaputraa/reminder-app:latest`
+3. **Docker Image**: `ghcr.io/dharmasaputraa/wiminder:latest`
 4. Pick the `ghcr` registry registered in Step 2 (or fill in the registry URL + credentials manually).
 5. **Save** — don't Deploy yet; first complete Environment & Volume (Steps 4–5).
 
@@ -69,7 +69,7 @@ What you **don't** need to set (already defaulted by the image / dev only):
 
 SQLite is stored in `/data`. **Without a volume, all data is lost on every redeploy/restart.**
 
-- Mount: `/data` → a named volume (e.g. `wimember-data`) or a host path (e.g. `/var/lib/wimember`).
+- Mount: `/data` → a named volume (e.g. `wiminder-data`) or a host path (e.g. `/var/lib/wiminder`).
 
 ## Step 6 — Domain (Domains tab)
 
@@ -137,20 +137,20 @@ For experiments/quick hotfixes, the image can be built on a local machine (Podma
 ```bash
 make test                                        # local builds don't pass the CI gate — test manually first
 podman build --platform linux/amd64 \
-  -t ghcr.io/dharmasaputraa/reminder-app:0.1.0 . # match the server arch (uname -m)
+  -t ghcr.io/dharmasaputraa/wiminder:0.1.0 . # match the server arch (uname -m)
 podman run --rm -d --name smoke -p 8081:8080 \
   -e APP_SECRET=dev-secret-long-16 -e AUTH_MODE=dev -e ADMIN_EMAILS=a@b.c \
-  ghcr.io/dharmasaputraa/reminder-app:0.1.0
+  ghcr.io/dharmasaputraa/wiminder:0.1.0
 curl -s localhost:8081/healthz && podman rm -f smoke   # smoke test (README §Container verification)
 echo "<TOKEN>" | podman login ghcr.io -u dharmasaputraa --password-stdin
-podman push ghcr.io/dharmasaputraa/reminder-app:0.1.0
+podman push ghcr.io/dharmasaputraa/wiminder:0.1.0
 ```
 
 - The PAT for pushing must have **`write:packages`** (read-only is not enough).
 - After pushing: change the tag in Dokploy → Deploy, or trigger `POST /api/application.deploy` like CI does.
 - Note: local builds skip CI tests and cross-arch builds on a Mac run via emulation (slower) — use only for hotfixes; official releases still go through `git tag`.
 
-**Rollback**: the **General** tab of the Dokploy application → change the image tag to an older version (e.g. `ghcr.io/dharmasaputraa/reminder-app:1.2.2`) → **Deploy**. All versions are kept in GHCR.
+**Rollback**: the **General** tab of the Dokploy application → change the image tag to an older version (e.g. `ghcr.io/dharmasaputraa/wiminder:1.2.2`) → **Deploy**. All versions are kept in GHCR.
 
 **Redeploy the same version**: the **Deploy** button in the panel, or re-run the Release workflow via *Run workflow* (manual dispatch).
 
@@ -158,7 +158,7 @@ podman push ghcr.io/dharmasaputraa/reminder-app:0.1.0
 
 The only state is the SQLite file in `/data` (`wimember.db`). Principle: backups must live **outside the server** — VPS dies = everything is lost. A practical target: Cloudflare R2 (free 10 GB; this db is only a few MB).
 
-> Tip: mount the `/data` volume as a **host path** (e.g. `/opt/wimember/data:/data`), not a named volume — the file is directly visible on the host and easy to back up.
+> Tip: mount the `/data` volume as a **host path** (e.g. `/opt/wiminder/data:/data`), not a named volume — the file is directly visible on the host and easy to back up.
 
 ### Option A — Cron + rclone (simple, good starting point)
 
@@ -167,21 +167,21 @@ Daily backup using sqlite3's built-in `.backup` — safe to run while the app ke
 ```bash
 apt install -y sqlite3 rclone          # or apk add on alpine
 rclone config                          # once: create a remote, e.g. named "r2" (R2 endpoint + access key)
-mkdir -p /opt/wimember/backups
+mkdir -p /opt/wiminder/backups
 crontab -e
 # add (single line; \% is escaped for cron):
-30 2 * * * sqlite3 /opt/wimember/data/wimember.db ".backup '/opt/wimember/backups/wimember-$(date +\%F).db'" && find /opt/wimember/backups -name 'wimember-*.db' -mtime +14 -delete && rclone copy /opt/wimember/backups r2:wimember-backup --max-age 48h
+30 2 * * * sqlite3 /opt/wiminder/data/wimember.db ".backup '/opt/wiminder/backups/wiminder-$(date +\%F).db'" && find /opt/wiminder/backups -name 'wiminder-*.db' -mtime +14 -delete && rclone copy /opt/wiminder/backups r2:wiminder-backup --max-age 48h
 ```
 
-**Restore**: stop the app in Dokploy → overwrite `/opt/wimember/data/wimember.db` with the backup file → Start → check `/healthz`.
+**Restore**: stop the app in Dokploy → overwrite `/opt/wiminder/data/wimember.db` with the backup file → Start → check `/healthz`.
 
 ### Option B — Litestream (continuous, point-in-time recovery)
 
 Real-time replication to S3/R2; a config is available in the repo (`deploy/litestream.yml`):
 
 1. Create a bucket + access key (R2: also set `LITESTREAM_ENDPOINT`), adjust the replica URL in `deploy/litestream.yml`.
-2. Upload `deploy/litestream.yml` to the host, then in Dokploy create a **second service**: image `litestream/litestream`, command `replicate -config /etc/litestream.yml`, mount the same host path (`/opt/wimember/data:/data`) and the config read-only (`/opt/wimember/litestream.yml:/etc/litestream.yml:ro`), env `LITESTREAM_ACCESS_KEY_ID` / `LITESTREAM_SECRET_ACCESS_KEY` / `LITESTREAM_ENDPOINT`.
-3. **Restore**: stop the app → `litestream restore -o /data/wimember.db s3://bucket/wimember/wimember.db` → start.
+2. Upload `deploy/litestream.yml` to the host, then in Dokploy create a **second service**: image `litestream/litestream`, command `replicate -config /etc/litestream.yml`, mount the same host path (`/opt/wiminder/data:/data`) and the config read-only (`/opt/wiminder/litestream.yml:/etc/litestream.yml:ro`), env `LITESTREAM_ACCESS_KEY_ID` / `LITESTREAM_SECRET_ACCESS_KEY` / `LITESTREAM_ENDPOINT`.
+3. **Restore**: stop the app → `litestream restore -o /data/wimember.db s3://bucket/wiminder/wimember.db` → start.
 
 Start the new Litestream after the db has content (or do one initial backup via Option A) so replication has a baseline.
 

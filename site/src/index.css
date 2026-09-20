@@ -72,3 +72,10 @@ body {
 ::selection {
   background: rgba(228, 242, 34, 0.2);
 }
+
+/* Hairline focus ring — the only keyboard affordance, kept in the grey scale. */
+a:focus-visible,
+button:focus-visible {
+  outline: 1px solid #d0d6e0;
+  outline-offset: 3px;
+}

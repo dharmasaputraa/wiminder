@@ -2,5 +2,5 @@
 dbs:
   - path: /data/wimember.db
     replicas:
-      - url: s3://bucket-anda/wimember/wimember.db
+      - url: s3://bucket-anda/wiminder/wimember.db
         # endpoint, access-key-id, secret-access-key via env LITESTREAM_*

@@ -9,10 +9,10 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 
-	"wimember/internal/calendarprov"
-	"wimember/internal/config"
-	"wimember/internal/secret"
-	"wimember/internal/store"
+	"wiminder/internal/calendarprov"
+	"wiminder/internal/config"
+	"wiminder/internal/secret"
+	"wiminder/internal/store"
 )
 
 type RunResult struct{ Sent, Failed, Missed int }

@@ -30,7 +30,7 @@ func Open(path string) (*Store, error) {
 // Pragmas go through the DSN (_pragma=...) so they apply to EVERY pool
 // connection; PRAGMA foreign_keys is scoped per connection.
 func OpenInMemory() (*Store, error) {
-	db, err := sql.Open("sqlite", "file:wimembertest?mode=memory&cache=shared&_pragma=journal_mode(WAL)&_pragma=foreign_keys(1)&_pragma=busy_timeout(5000)")
+	db, err := sql.Open("sqlite", "file:wimindertest?mode=memory&cache=shared&_pragma=journal_mode(WAL)&_pragma=foreign_keys(1)&_pragma=busy_timeout(5000)")
 	if err != nil {
 		return nil, err
 	}

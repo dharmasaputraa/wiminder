@@ -18,8 +18,8 @@ import (
 	"github.com/golang-jwt/jwt/v5"
 	"github.com/google/uuid"
 
-	"wimember/internal/config"
-	"wimember/internal/store"
+	"wiminder/internal/config"
+	"wiminder/internal/store"
 )
 
 type stubProvisioner struct{ users map[string]store.User }

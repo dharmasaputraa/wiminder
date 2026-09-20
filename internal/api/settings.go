@@ -6,7 +6,7 @@ import (
 	"regexp"
 	"time"
 
-	"wimember/internal/domain"
+	"wiminder/internal/domain"
 )
 
 type Settings struct {

@@ -13,14 +13,14 @@ web:
 	touch internal/api/webroot/.gitkeep
 
 build: web
-	CGO_ENABLED=0 go build -trimpath -ldflags="-s -w" -o bin/wimember ./cmd/server
+	CGO_ENABLED=0 go build -trimpath -ldflags="-s -w" -o bin/wiminder ./cmd/server
 
 # E2E: build SPA+binary, then run the Playwright suite (web/e2e).
 e2e: build
 	cd web && pnpm exec playwright test
 
 run: build
-	APP_SECRET=dev-secret-long-enough-16 AUTH_MODE=dev DATA_DIR=./data ./bin/wimember
+	APP_SECRET=dev-secret-long-enough-16 AUTH_MODE=dev DATA_DIR=./data ./bin/wiminder
 
 # Hot reload: rebuild + restart automatically when .go files change (SPA via npm run dev)
 dev:

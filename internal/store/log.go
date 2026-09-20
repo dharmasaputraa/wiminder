@@ -6,7 +6,7 @@ import (
 
 	"github.com/google/uuid"
 
-	"wimember/internal/domain"
+	"wiminder/internal/domain"
 )
 
 type NotificationEntry struct {

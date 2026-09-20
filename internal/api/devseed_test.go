@@ -5,9 +5,9 @@ import (
 	"encoding/json"
 	"testing"
 
-	"wimember/internal/config"
-	"wimember/internal/secret"
-	"wimember/internal/store"
+	"wiminder/internal/config"
+	"wiminder/internal/secret"
+	"wiminder/internal/store"
 )
 
 func devSeedConfig(botToken, chatID, firstAdmin string) config.Config {

@@ -186,7 +186,7 @@ test('Test send: success pushes to the stub; failure toasts and pushes nothing',
   await expect(page.getByText('Test succeeded — notification sent.')).toBeVisible()
   const delta = app.stubMessages().slice(beforeOk)
   expect(delta.length).toBeGreaterThan(0)
-  expect(delta.some((m) => m.title === 'wimember tes')).toBe(true)
+  expect(delta.some((m) => m.title === 'wiminder tes')).toBe(true)
   expect(delta.some((m) => m.token === 'stub-token-xyz')).toBe(true)
 
   // API-seeded, not UI-added: the UI writes `to` as a string, which the email

@@ -10,7 +10,7 @@ import (
 
 	"github.com/google/uuid"
 
-	"wimember/internal/domain"
+	"wiminder/internal/domain"
 )
 
 // SPA contract: GET contact always carries an occasions array; `null` makes

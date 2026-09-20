@@ -14,9 +14,9 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
 
-	"wimember/internal/config"
-	"wimember/internal/domain"
-	"wimember/internal/store"
+	"wiminder/internal/config"
+	"wiminder/internal/domain"
+	"wiminder/internal/store"
 )
 
 func newTestServer(t *testing.T, admin string) (*Server, *store.Store) {

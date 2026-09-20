@@ -62,5 +62,5 @@ func (t *Telegram) Send(ctx context.Context, msg Message) error {
 }
 
 func (t *Telegram) Test(ctx context.Context) error {
-	return t.Send(ctx, Message{Title: "wimember tes", Body: "Koneksi Telegram OK ✅"})
+	return t.Send(ctx, Message{Title: "wiminder tes", Body: "Koneksi Telegram OK ✅"})
 }
