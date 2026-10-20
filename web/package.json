@@ -29,7 +29,7 @@
     "date-fns": "^4.4.0",
     "lucide-react": "^1.56.0",
     "motion": "^13.4.0",
-    "radix-ui": "^1.6.7",
+    "radix-ui": "^1.8.1",
     "react": "^19.2.8",
     "react-day-picker": "^10.0.1",
     "react-dom": "^19.2.8",
