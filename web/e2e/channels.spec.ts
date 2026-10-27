@@ -152,7 +152,10 @@ test('row controls persist to the DB: Active toggle and Default flag', async ({ 
   const id = (app.db.prepare('SELECT id FROM channels WHERE name = ?').get(name) as any).id
 
   await expandRow(page, name)
-  const activeSwitch = rowFor(page, name).getByRole('switch', { name: 'Active', exact: true })
+  // base-ui 1.9.0 fixed aria-label precedence, so these controls are named by
+  // their aria-labels ("Toggle channel active", "Set as default channel"),
+  // no longer by the visible FieldLabel text.
+  const activeSwitch = rowFor(page, name).getByRole('switch', { name: 'Toggle channel active' })
   await expect(activeSwitch).toBeChecked() // non-vacuous: new channels start enabled
   await activeSwitch.click()
   await expect.poll(() => rowById(app.db, 'channels', id).enabled).toBe(0)
@@ -160,7 +163,7 @@ test('row controls persist to the DB: Active toggle and Default flag', async ({ 
   await expect.poll(() => rowById(app.db, 'channels', id).enabled).toBe(1)
 
   // Default is a settings write, not a channel column.
-  const def = rowFor(page, name).getByRole('checkbox', { name: 'Default', exact: true })
+  const def = rowFor(page, name).getByRole('checkbox', { name: 'Set as default channel' })
   await expect(def).not.toBeChecked()
   await def.click()
   await expect(def).toBeChecked()
