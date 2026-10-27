@@ -108,9 +108,17 @@ jobs:
 
       # Full Dockerfile validation (SPA stage + Go stage) — the same build
       # Dokploy would do, without pushing anywhere.
+      #
+      # cache-from only: a push:false validation build gains almost nothing
+      # from exporting cache (the binary layer changes every commit), and
+      # writing mode=max on every push/PR blew through the 10 GB per-repo
+      # Actions cache quota, making exports flake with
+      # "error writing layer blob: failed to reserve cache". release.yml
+      # keeps mode=max on tags, so the cache-from hits stay warm for base
+      # images, `go mod download`, and `pnpm install` when lockfiles are
+      # unchanged.
       - uses: docker/build-push-action@c3c9e263c25d99ce0380d002d59b67737d91b0dc # v7.4.0
         with:
           context: .
           push: false
           cache-from: type=gha
-          cache-to: type=gha,mode=max

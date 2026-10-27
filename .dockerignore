@@ -6,3 +6,7 @@ data
 bin
 .env
 .superpowers
+site
+docs
+backups
+testdata
