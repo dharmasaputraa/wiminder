@@ -27,7 +27,7 @@
     "class-variance-authority": "^0.7.1",
     "cn": "^0.5.2",
     "date-fns": "^4.4.0",
-    "lucide-react": "^1.56.0",
+    "lucide-react": "^1.79.0",
     "motion": "^14.4.0",
     "radix-ui": "^1.8.1",
     "react": "^19.3.1",
